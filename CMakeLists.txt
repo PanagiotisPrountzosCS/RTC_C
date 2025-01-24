@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.10)
+project(RTCC C)
+
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
+#find_package(criterion REQUIRED)
+
+set(INCLUDE_DIRS include)
+
+set(SOURCE_FILES 
+src/tuple.c
+)
+
+set(TEST_SOURCES 
+tests/tupletest.c
+tests/colortest.c
+)
+
+enable_testing()
+
+add_executable(rtccTests ${TEST_SOURCES} ${SOURCE_FILES})
+target_link_libraries(rtccTests criterion m)
+target_include_directories(rtccTests PRIVATE ${INCLUDE_DIRS})
+
