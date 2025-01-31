@@ -3,44 +3,39 @@
 
 #include "tuple.h"
 
-typedef struct color
-{
+typedef struct Color {
     float r;
     float g;
     float b;
-} color;
+} Color;
 
-static inline color color_add(color c1, color c2)
-{
-    return (color){c1.r + c2.r, c1.g + c2.g, c1.b + c2.b};
+static inline Color color(float i, float j, float k) { return (Color){i, j, k}; }
+
+static inline Color color_add(Color c1, Color c2) {
+    return (Color){c1.r + c2.r, c1.g + c2.g, c1.b + c2.b};
 }
 
-static inline void color_add_to(color *c1, color c2)
-{
+static inline void color_add_to(Color *c1, Color c2) {
     c1->r += c2.r;
     c1->g += c2.g;
     c1->b += c2.b;
 }
 
-static inline color color_subtract(color c1, color c2)
-{
-    return (color){c1.r - c2.r, c1.g - c2.g, c1.b - c2.b};
+static inline Color color_subtract(Color c1, Color c2) {
+    return (Color){c1.r - c2.r, c1.g - c2.g, c1.b - c2.b};
 }
 
-static inline void color_subtract_from(color *c1, color c2)
-{
+static inline void color_subtract_from(Color *c1, Color c2) {
     c1->r -= c2.r;
     c1->g -= c2.g;
     c1->b -= c2.b;
 }
 
-static inline color color_multiply(color c, float scalar)
-{
-    return (color){c.r * scalar, c.g * scalar, c.b * scalar};
+static inline Color color_multiply(Color c, float scalar) {
+    return (Color){c.r * scalar, c.g * scalar, c.b * scalar};
 }
 
-static inline void color_multiply_by(color *c, float scalar)
-{
+static inline void color_multiply_by(Color *c, float scalar) {
     c->r *= scalar;
     c->g *= scalar;
     c->b *= scalar;

@@ -1,0 +1,4 @@
+#define EPSILON_FLOAT_CMP 0.0001
+
+// canvas
+#define CANVAS_PPM_MAX_LINE_LENGTH 70
