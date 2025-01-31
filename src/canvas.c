@@ -18,7 +18,8 @@ Canvas canvas(size_t width, size_t height) {
 }
 
 void canvas_destroy(Canvas* c) {
-    if (c->pixels != NULL) free(c->pixels);
+    assert(c);
+    free(c->pixels);
 }
 
 void canvas_to_ppm(const Canvas* c, const char* filename) {

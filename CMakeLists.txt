@@ -11,12 +11,16 @@ set(SOURCE_FILES
     src/tuple.c
     src/canvas.c
     src/algorithms.c
+    src/matrix.c
+    src/transformations.c
 )
 
 set(TEST_SOURCES
     tests/tupletest.c
     tests/colortest.c
     tests/canvastest.c
+    tests/matrixtest.c
+    tests/transformationstest.c
 )
 
 enable_testing()

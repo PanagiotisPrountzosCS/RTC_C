@@ -1,9 +1,9 @@
 #ifndef TUPLE_H
 #define TUPLE_H
 
+#include <assert.h>
 #include <math.h>
 #include <stdbool.h>
-
 
 typedef struct Tuple {
     float x;
@@ -16,9 +16,15 @@ bool isPoint(Tuple t);
 
 bool isVector(Tuple t);
 
+static inline Tuple tuple(float x, float y, float z, float w) { return (Tuple){x, y, z, w}; }
+
 static inline Tuple point(float x, float y, float z) { return (Tuple){x, y, z, 1.0}; }
 
 static inline Tuple vector(float x, float y, float z) { return (Tuple){x, y, z, 0.0}; }
+
+static inline bool tuple_equal(Tuple a, Tuple b) {
+    return a.x == b.x && a.y == b.y && a.z == b.z && a.w == b.w;
+}
 
 static inline Tuple tuple_add(Tuple a, Tuple b) {
     return (Tuple){a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w};
@@ -63,10 +69,12 @@ static inline void tuple_multiply_self(Tuple *t, float scalar) {
 }
 
 static inline Tuple tuple_divide(Tuple t, float scalar) {
+    assert(scalar != 0);
     return (Tuple){t.x / scalar, t.y / scalar, t.z / scalar, t.w / scalar};
 }
 
 static inline void tuple_divide_self(Tuple *t, float scalar) {
+    assert(scalar != 0);
     t->x /= scalar;
     t->y /= scalar;
     t->z /= scalar;
@@ -79,6 +87,7 @@ static inline float tuple_magnitude(Tuple t) {
 
 static inline Tuple tuple_normalize(Tuple t) {
     float mag = tuple_magnitude(t);
+    assert(mag != 0);
     return (Tuple){t.x / mag, t.y / mag, t.z / mag, t.w / mag};
 }
 
