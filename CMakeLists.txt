@@ -12,7 +12,7 @@ set(SOURCE_FILES
     src/canvas.c
     src/algorithms.c
     src/matrix.c
-    src/transformations.c
+    src/globaldefs.c
 )
 
 set(TEST_SOURCES
@@ -21,6 +21,7 @@ set(TEST_SOURCES
     tests/canvastest.c
     tests/matrixtest.c
     tests/transformationstest.c
+    tests/intersectionstest.c
 )
 
 enable_testing()

@@ -5,6 +5,8 @@
 #include <math.h>
 #include <stdbool.h>
 
+#include "globaldefs.h"
+
 typedef struct Tuple {
     float x;
     float y;
@@ -23,7 +25,8 @@ static inline Tuple point(float x, float y, float z) { return (Tuple){x, y, z, 1
 static inline Tuple vector(float x, float y, float z) { return (Tuple){x, y, z, 0.0}; }
 
 static inline bool tuple_equal(Tuple a, Tuple b) {
-    return a.x == b.x && a.y == b.y && a.z == b.z && a.w == b.w;
+    return (a.x - b.x < EPSILON_FLOAT_CMP) && (a.y - b.y < EPSILON_FLOAT_CMP) &&
+           (a.z - b.z < EPSILON_FLOAT_CMP) && (a.w - b.w < EPSILON_FLOAT_CMP);
 }
 
 static inline Tuple tuple_add(Tuple a, Tuple b) {
