@@ -13,6 +13,9 @@ set(SOURCE_FILES
     src/algorithms.c
     src/matrix.c
     src/globaldefs.c
+    src/intersections.c
+    src/ray.c
+    src/geometries.c
 )
 
 set(TEST_SOURCES
@@ -22,6 +25,7 @@ set(TEST_SOURCES
     tests/matrixtest.c
     tests/transformationstest.c
     tests/intersectionstest.c
+    tests/lightingtest.c
 )
 
 enable_testing()
@@ -30,6 +34,6 @@ add_executable(rtccTests ${TEST_SOURCES} ${SOURCE_FILES})
 target_link_libraries(rtccTests criterion m)
 target_include_directories(rtccTests PRIVATE ${INCLUDE_DIRS})
 
-add_executable(rtccCanvas tests/main.c ${SOURCE_FILES})
-target_link_libraries(rtccCanvas m)
-target_include_directories(rtccCanvas PRIVATE ${INCLUDE_DIRS})
+add_executable(rtccMain tests/main.c ${SOURCE_FILES})
+target_link_libraries(rtccMain m)
+target_include_directories(rtccMain PRIVATE ${INCLUDE_DIRS})

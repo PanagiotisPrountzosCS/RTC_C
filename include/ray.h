@@ -1,6 +1,7 @@
 #ifndef RAY_H
 #define RAY_H
 
+#include "matrix.h"
 #include "tuple.h"
 
 typedef struct Ray {
@@ -8,12 +9,12 @@ typedef struct Ray {
     Tuple direction;
 } Ray;
 
-static inline Ray ray(Tuple origin, Tuple direction) {
-    return (Ray){origin, direction};
-}
+static inline Ray ray(Tuple origin, Tuple direction) { return (Ray){origin, direction}; }
 
 static inline Tuple ray_position(Ray r, double t) {
     return tuple_add(r.origin, tuple_multiply(r.direction, t));
 }
+
+Ray transform_ray(const Ray* r, const Matrix4* m);
 
 #endif

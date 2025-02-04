@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdbool.h>
 
+#include "algorithms.h"
 #include "globaldefs.h"
 
 typedef struct Tuple {
@@ -25,8 +26,8 @@ static inline Tuple point(float x, float y, float z) { return (Tuple){x, y, z, 1
 static inline Tuple vector(float x, float y, float z) { return (Tuple){x, y, z, 0.0}; }
 
 static inline bool tuple_equal(Tuple a, Tuple b) {
-    return (a.x - b.x < EPSILON_FLOAT_CMP) && (a.y - b.y < EPSILON_FLOAT_CMP) &&
-           (a.z - b.z < EPSILON_FLOAT_CMP) && (a.w - b.w < EPSILON_FLOAT_CMP);
+    return (absolute(a.x - b.x) < RTCC_EPSILON_CMP) && (absolute(a.y - b.y) < RTCC_EPSILON_CMP) &&
+           (absolute(a.z - b.z) < RTCC_EPSILON_CMP) && (absolute(a.w - b.w) < RTCC_EPSILON_CMP);
 }
 
 static inline Tuple tuple_add(Tuple a, Tuple b) {
@@ -99,9 +100,7 @@ static inline void tuple_normalize_self(Tuple *t) {
     tuple_divide_self(t, mag);
 }
 
-static inline float tuple_dot(Tuple a, Tuple b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
-}
+static inline float tuple_dot(Tuple a, Tuple b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
 static inline Tuple tuple_cross(Tuple a, Tuple b) {
     return (Tuple){a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x, 0};
@@ -113,4 +112,7 @@ static inline void tuple_cross_self(Tuple *a, Tuple b) {
     a->z = a->x * b.y - a->y * b.x;
 }
 
+static inline Tuple tuple_reflect(Tuple incident, Tuple normal){
+    return tuple_subtract(incident, tuple_multiply(normal, 2 * tuple_dot(incident, normal)));
+}
 #endif

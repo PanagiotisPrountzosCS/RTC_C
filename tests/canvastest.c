@@ -6,12 +6,12 @@
 
 Test(canvas, create) {
     Canvas c = canvas(10, 20);
-    cr_assert_float_eq(c.width, 10, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(c.height, 20, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(c.width, 10, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(c.height, 20, RTCC_EPSILON_CMP);
     for (int i = 0; i < c.width * c.height; i++) {
-        cr_assert_float_eq(c.pixels[i].r, 0, EPSILON_FLOAT_CMP);
-        cr_assert_float_eq(c.pixels[i].g, 0, EPSILON_FLOAT_CMP);
-        cr_assert_float_eq(c.pixels[i].b, 0, EPSILON_FLOAT_CMP);
+        cr_assert_float_eq(c.pixels[i].r, 0, RTCC_EPSILON_CMP);
+        cr_assert_float_eq(c.pixels[i].g, 0, RTCC_EPSILON_CMP);
+        cr_assert_float_eq(c.pixels[i].b, 0, RTCC_EPSILON_CMP);
     }
     canvas_destroy(&c);
 }
@@ -23,9 +23,9 @@ Test(canvas, writePixel) {
     canvas_write_pixel(&c, &red, 2, 3);
 
     Color actualPixel = canvas_pixel_at(&c, 2, 3);
-    cr_assert_float_eq(actualPixel.r, 1, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(actualPixel.g, 0, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(actualPixel.b, 0, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(actualPixel.r, 1, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(actualPixel.g, 0, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(actualPixel.b, 0, RTCC_EPSILON_CMP);
 
     canvas_destroy(&c);
 }

@@ -3,10 +3,11 @@
 
 #include <stdint.h>
 
-#define EPSILON_FLOAT_CMP 0.0001
+#define RTCC_EPSILON_CMP 0.0001
+#define RTCC_PI 3.14159265358979323846
 
 // canvas
-#define CANVAS_PPM_MAX_LINE_LENGTH 70
+#define RTCC_MAX_LINE_LENGTH_PPM 70
 
 // geometries
 extern uint64_t existing_IDs;

@@ -8,32 +8,32 @@ Test(matrix, create_mat4) {
     float data[16] = {1, 2, 3, 4, 5.5, 6.5, 7.5, 8.5, 9, 10, 11, 12, 13.5, 14.5, 15.5, 16.5};
     Matrix4 m = matrix4(data);
 
-    cr_assert_float_eq(matrix4_at(&m, 0, 0), 1, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&m, 0, 3), 4, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&m, 1, 0), 5.5, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&m, 1, 2), 7.5, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&m, 2, 2), 11, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&m, 3, 0), 13.5, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&m, 3, 2), 15.5, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix4_at(&m, 0, 0), 1, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&m, 0, 3), 4, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&m, 1, 0), 5.5, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&m, 1, 2), 7.5, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&m, 2, 2), 11, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&m, 3, 0), 13.5, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&m, 3, 2), 15.5, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, create_mat2) {
     float data[4] = {-3, 5, 1, -2};
     Matrix2 m = matrix2(data);
 
-    cr_assert_float_eq(matrix2_at(&m, 0, 0), -3, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix2_at(&m, 0, 1), 5, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix2_at(&m, 1, 0), 1, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix2_at(&m, 1, 1), -2, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix2_at(&m, 0, 0), -3, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix2_at(&m, 0, 1), 5, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix2_at(&m, 1, 0), 1, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix2_at(&m, 1, 1), -2, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, create_mat3) {
     float data[9] = {-3, 5, 0, 1, -2, -7, 0, 1, 1};
     Matrix3 m = matrix3(data);
 
-    cr_assert_float_eq(matrix3_at(&m, 0, 0), -3, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_at(&m, 1, 1), -2, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_at(&m, 2, 2), 1, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix3_at(&m, 0, 0), -3, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_at(&m, 1, 1), -2, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_at(&m, 2, 2), 1, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, mat4_equal) {
@@ -71,10 +71,10 @@ Test(matrix, mat4_tuple_mult) {
 
     Tuple result = matrix4_multiply_tuple(&a, b);
 
-    cr_assert_float_eq(result.x, 18, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(result.y, 24, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(result.z, 33, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(result.w, 1, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(result.x, 18, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(result.y, 24, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(result.z, 33, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(result.w, 1, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, mat4_multiply_by_indentity) {
@@ -106,7 +106,7 @@ Test(matrix, mat2_det) {
     float a_data[4] = {1, 5, -3, 2};
     Matrix2 a = matrix2(a_data);
 
-    cr_assert_float_eq(matrix2_determinant(&a), 17, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix2_determinant(&a), 17, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, mat3_submat) {
@@ -138,40 +138,40 @@ Test(matrix, mat3_minor) {
     Matrix3 a = matrix3(a_data);
 
     Matrix2 b = matrix3_submatrix(&a, 1, 0);
-    cr_assert_float_eq(matrix2_determinant(&b), 25, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix2_determinant(&b), 25, RTCC_EPSILON_CMP);
 
-    cr_assert_float_eq(matrix3_minor(&a, 1, 0), 25, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix3_minor(&a, 1, 0), 25, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, mat3_cofactor) {
     float a_data[9] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
     Matrix3 a = matrix3(a_data);
 
-    cr_assert_float_eq(matrix3_minor(&a, 0, 0), -12, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_cofactor(&a, 0, 0), -12, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_minor(&a, 1, 0), 25, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_cofactor(&a, 1, 0), -25, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix3_minor(&a, 0, 0), -12, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_cofactor(&a, 0, 0), -12, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_minor(&a, 1, 0), 25, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_cofactor(&a, 1, 0), -25, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, mat3_det) {
     float a_data[9] = {1, 2, 6, -5, 8, -4, 2, 6, 4};
     Matrix3 a = matrix3(a_data);
 
-    cr_assert_float_eq(matrix3_cofactor(&a, 0, 0), 56, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_cofactor(&a, 0, 1), 12, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_cofactor(&a, 0, 2), -46, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix3_determinant(&a), -196, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix3_cofactor(&a, 0, 0), 56, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_cofactor(&a, 0, 1), 12, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_cofactor(&a, 0, 2), -46, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix3_determinant(&a), -196, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, mat4_det) {
     float a_data[16] = {-2, -8, 3, 5, -3, 1, 7, 3, 1, 2, -9, 6, -6, 7, 7, -9};
     Matrix4 a = matrix4(a_data);
 
-    cr_assert_float_eq(matrix4_cofactor(&a, 0, 0), 690, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_cofactor(&a, 0, 1), 447, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_cofactor(&a, 0, 2), 210, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_cofactor(&a, 0, 3), 51, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_determinant(&a), -4071, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix4_cofactor(&a, 0, 0), 690, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_cofactor(&a, 0, 1), 447, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_cofactor(&a, 0, 2), 210, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_cofactor(&a, 0, 3), 51, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_determinant(&a), -4071, RTCC_EPSILON_CMP);
 }
 
 Test(matrix, mat4_is_invertible) {
@@ -192,11 +192,11 @@ Test(matrix, mat4_inverse) {
 
     Matrix4 b = matrix4_inverse(&a);
 
-    cr_assert_float_eq(matrix4_determinant(&a), 532, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_cofactor(&a, 2, 3), -160, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&b, 3, 2), -160.0 / 532.0, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_cofactor(&a, 3, 2), 105, EPSILON_FLOAT_CMP);
-    cr_assert_float_eq(matrix4_at(&b, 2, 3), 105.0 / 532.0, EPSILON_FLOAT_CMP);
+    cr_assert_float_eq(matrix4_determinant(&a), 532, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_cofactor(&a, 2, 3), -160, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&b, 3, 2), -160.0 / 532.0, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_cofactor(&a, 3, 2), 105, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(matrix4_at(&b, 2, 3), 105.0 / 532.0, RTCC_EPSILON_CMP);
 
     float b_data[16] = {0.21805,  0.45113,  0.24060,  -0.04511, -0.80827, -1.45677,
                         -0.44361, 0.52068,  -0.07895, -0.22368, -0.05263, 0.19737,

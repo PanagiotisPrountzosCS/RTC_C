@@ -74,8 +74,8 @@ Test(transformations, scaling_reflection) {
 }
 
 Test(transformations, rotation_x) {
-    Matrix4 half_quarter = rotation_x(M_PI / 4);
-    Matrix4 full_quarter = rotation_x(M_PI / 2);
+    Matrix4 half_quarter = rotation_x(RTCC_PI / 4);
+    Matrix4 full_quarter = rotation_x(RTCC_PI / 2);
     Tuple p = point(0, 1, 0);
     Tuple expected_half = point(0, sqrt(2) / 2, sqrt(2) / 2);
     Tuple expected_full = point(0, 0, 1);
@@ -88,7 +88,7 @@ Test(transformations, rotation_x) {
 }
 
 Test(transformations, inverse_rotation_x) {
-    Matrix4 half_quarter = rotation_x(M_PI / 4);
+    Matrix4 half_quarter = rotation_x(RTCC_PI / 4);
     Matrix4 inverse = matrix4_inverse(&half_quarter);
     Tuple p = point(0, 1, 0);
     Tuple expected = point(0, sqrt(2) / 2, -sqrt(2) / 2);
@@ -99,8 +99,8 @@ Test(transformations, inverse_rotation_x) {
 }
 
 Test(transformations, rotation_y) {
-    Matrix4 half_quarter = rotation_y(M_PI / 4);
-    Matrix4 full_quarter = rotation_y(M_PI / 2);
+    Matrix4 half_quarter = rotation_y(RTCC_PI / 4);
+    Matrix4 full_quarter = rotation_y(RTCC_PI / 2);
     Tuple p = point(0, 0, 1);
     Tuple expected_half = point(sqrt(2) / 2, 0, sqrt(2) / 2);
     Tuple expected_full = point(1, 0, 0);
@@ -113,8 +113,8 @@ Test(transformations, rotation_y) {
 }
 
 Test(transformations, rotation_z) {
-    Matrix4 half_quarter = rotation_z(M_PI / 4);
-    Matrix4 full_quarter = rotation_z(M_PI / 2);
+    Matrix4 half_quarter = rotation_z(RTCC_PI / 4);
+    Matrix4 full_quarter = rotation_z(RTCC_PI / 2);
     Tuple p = point(0, 1, 0);
     Tuple expected_half = point(-sqrt(2) / 2, sqrt(2) / 2, 0);
     Tuple expected_full = point(-1, 0, 0);
@@ -172,7 +172,7 @@ Test(transformations, shearing_extras) {
 
 Test(transformations, chaining) {
     Tuple p = point(1, 0, 1);
-    Matrix4 A = rotation_x(M_PI / 2);
+    Matrix4 A = rotation_x(RTCC_PI / 2);
     Matrix4 B = scaling(5, 5, 5);
     Matrix4 C = translation(10, 5, 7);
 
@@ -187,7 +187,7 @@ Test(transformations, chaining) {
 
     Matrix4 BA = matrix4_multiply(&B, &A);
     Matrix4 T = matrix4_multiply(&C, &BA);
-    
+
     Tuple result = matrix4_multiply_tuple(&T, p);
     cr_assert(tuple_equal(point(15, 0, 7), result));
 }

@@ -36,7 +36,7 @@ Matrix4 matrix4(const float* data) {
 
 bool matrix2_equal(const Matrix2* a, const Matrix2* b) {
     for (int i = 0; i < 4; i++) {
-        if (absolute(a->data[i] - b->data[i]) > EPSILON_FLOAT_CMP) {
+        if (absolute(a->data[i] - b->data[i]) > RTCC_EPSILON_CMP) {
             return false;
         }
     }
@@ -47,7 +47,7 @@ bool matrix2_not_equal(const Matrix2* a, const Matrix2* b) { return !matrix2_equ
 
 bool matrix3_equal(const Matrix3* a, const Matrix3* b) {
     for (int i = 0; i < 9; i++) {
-        if (absolute(a->data[i] - b->data[i]) > EPSILON_FLOAT_CMP) {
+        if (absolute(a->data[i] - b->data[i]) > RTCC_EPSILON_CMP) {
             return false;
         }
     }
@@ -58,7 +58,7 @@ bool matrix3_not_equal(const Matrix3* a, const Matrix3* b) { return !matrix3_equ
 
 bool matrix4_equal(const Matrix4* a, const Matrix4* b) {
     for (int i = 0; i < 16; i++) {
-        if (absolute(a->data[i] - b->data[i]) > EPSILON_FLOAT_CMP) {
+        if (absolute(a->data[i] - b->data[i]) > RTCC_EPSILON_CMP) {
             return false;
         }
     }

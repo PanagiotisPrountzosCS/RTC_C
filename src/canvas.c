@@ -41,7 +41,7 @@ void canvas_to_ppm(const Canvas* c, const char* filename) {
     }
 
     // ppm wants 70 chars per line
-    char buffer[CANVAS_PPM_MAX_LINE_LENGTH] = "";
+    char buffer[RTCC_MAX_LINE_LENGTH_PPM] = "";
     for (int i = 0; i < c->height; i++) {
         size_t current_line_size = 0;
         for (int j = 0; j < c->width; j++) {
@@ -54,21 +54,21 @@ void canvas_to_ppm(const Canvas* c, const char* filename) {
             int green_len = int_len(green);
             int blue_len = int_len(blue);
 
-            if (current_line_size + red_len < CANVAS_PPM_MAX_LINE_LENGTH) {
+            if (current_line_size + red_len < RTCC_MAX_LINE_LENGTH_PPM) {
                 current_line_size += sprintf(buffer + current_line_size, "%d ", red);
             } else {
                 buffer[current_line_size - 1] = '\n';
                 write(fd, buffer, current_line_size);
                 current_line_size = sprintf(buffer, "%d ", red);
             }
-            if (current_line_size + green_len < CANVAS_PPM_MAX_LINE_LENGTH) {
+            if (current_line_size + green_len < RTCC_MAX_LINE_LENGTH_PPM) {
                 current_line_size += sprintf(buffer + current_line_size, "%d ", green);
             } else {
                 buffer[current_line_size - 1] = '\n';
                 write(fd, buffer, current_line_size);
                 current_line_size = sprintf(buffer, "%d ", green);
             }
-            if (current_line_size + blue_len < CANVAS_PPM_MAX_LINE_LENGTH) {
+            if (current_line_size + blue_len < RTCC_MAX_LINE_LENGTH_PPM) {
                 current_line_size += sprintf(buffer + current_line_size, "%d ", blue);
             } else {
                 buffer[current_line_size - 1] = '\n';
