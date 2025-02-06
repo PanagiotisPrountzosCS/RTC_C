@@ -1,5 +1,6 @@
 #include "physics/light.h"
 
+#include <stdio.h>
 Color lighting(Material m, Light l, Tuple obj_pos, Tuple eye_pos,
                Tuple normal) {
     Color effective_color = color_multiply(m.color, l.intensity);
@@ -18,7 +19,8 @@ Color lighting(Material m, Light l, Tuple obj_pos, Tuple eye_pos,
         diffuse = color_multiply_scalar(effective_color,
                                         m.diffuse * light_dot_normal);
         Tuple reflectv = tuple_reflect(tuple_negate(lightv), normal);
-        float reflect_dot_eye = tuple_dot(reflectv, eye_pos);
+        Tuple normal_eye_pos = tuple_normalize(eye_pos);
+        float reflect_dot_eye = tuple_dot(reflectv, normal_eye_pos);
 
         if (reflect_dot_eye <= 0) {
             specular = color_black();
