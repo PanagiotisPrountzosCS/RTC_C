@@ -13,7 +13,7 @@ typedef struct Material {
 } Material;
 
 static inline Material material() {
-    return (Material){color(1, 1, 1), 0.1, 0.9, 0.9, 200};
+    return (Material){color(1, 1, 1), 0.1, 0.9, 0.9, 8};
 }
 
 #endif

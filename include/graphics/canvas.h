@@ -22,10 +22,10 @@ static inline void canvas_fill(Canvas* c, const Color* clr) {
 
 void canvas_destroy(Canvas* c);
 
-static inline void canvas_write_pixel(Canvas* c, const Color* clr, size_t x,
+static inline void canvas_write_pixel(Canvas* c, const Color clr, size_t x,
                                       size_t y) {
     assert(x < c->width && y < c->height);
-    c->pixels[x + y * c->width] = *clr;
+    c->pixels[x + y * c->width] = clr;
 }
 
 static inline Color canvas_pixel_at(const Canvas* c, size_t x, size_t y) {

@@ -12,6 +12,7 @@ set(SOURCE_FILES
     src/extras/globaldefs.c
 
     src/graphics/canvas.c
+    src/graphics/world.c
 
     src/maths/tuple.c
     src/maths/matrix.c
@@ -32,6 +33,7 @@ set(TEST_SOURCES
     tests/transformationstest.c
     tests/tupletest.c
     tests/lightingtest.c
+    tests/worldstest.c
 )
 
 enable_testing()

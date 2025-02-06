@@ -20,7 +20,7 @@ Test(canvas, writePixel) {
     Canvas c = canvas(10, 20);
     Color red = color(1, 0, 0);
 
-    canvas_write_pixel(&c, &red, 2, 3);
+    canvas_write_pixel(&c, red, 2, 3);
 
     Color actualPixel = canvas_pixel_at(&c, 2, 3);
     cr_assert_float_eq(actualPixel.r, 1, RTCC_EPSILON_CMP);

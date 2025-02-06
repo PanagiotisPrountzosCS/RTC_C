@@ -85,7 +85,7 @@ Test(sphere, sphere_materials) {
     cr_assert_float_eq(m.ambient, 0.1, RTCC_EPSILON_CMP);
     cr_assert_float_eq(m.diffuse, 0.9, RTCC_EPSILON_CMP);
     cr_assert_float_eq(m.specular, 0.9, RTCC_EPSILON_CMP);
-    cr_assert_float_eq(m.shininess, 200, RTCC_EPSILON_CMP);
+    cr_assert_float_eq(m.shininess, 8, RTCC_EPSILON_CMP);
 
     Material m2 = material();
     m2.ambient = 1;

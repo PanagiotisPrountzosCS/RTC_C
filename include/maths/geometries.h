@@ -8,7 +8,13 @@
 #include "maths/tuple.h"
 #include "physics/material.h"
 
-enum object_type { SPHERE = 0 };
+enum object_type { OBJ_TYPE_SPHERE = 0 };
+
+typedef struct Object {
+    uint64_t type;
+    void* object;
+} Object;
+
 typedef struct Sphere {
     uint64_t id;
     Matrix4 transform;

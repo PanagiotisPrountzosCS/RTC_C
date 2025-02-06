@@ -14,6 +14,6 @@ static inline Light point_light(Tuple position, Color intensity) {
     return (Light){position, intensity};
 }
 
-Color lighting(Material m, Light l, Tuple pos, Tuple eye_pos, Tuple normal);
+Color lighting(Material m, Light l, Tuple obj_pos, Tuple eye_pos, Tuple normal);
 
 #endif
