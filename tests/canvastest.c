@@ -1,8 +1,8 @@
 #include <criterion/criterion.h>
 
-#include "canvas.h"
-#include "color.h"
-#include "globaldefs.h"
+#include "extras/globaldefs.h"
+#include "graphics/canvas.h"
+#include "graphics/color.h"
 
 Test(canvas, create) {
     Canvas c = canvas(10, 20);

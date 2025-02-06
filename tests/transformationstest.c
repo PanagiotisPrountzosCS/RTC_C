@@ -1,6 +1,7 @@
 #include <criterion/criterion.h>
 
-#include "transformations.h"
+#include "maths/transformations.h"
+#include "physics/ray.h"
 
 Test(transformations, translation) {
     Matrix4 transform = translation(5, -3, 2);
@@ -190,4 +191,19 @@ Test(transformations, chaining) {
 
     Tuple result = matrix4_multiply_tuple(&T, p);
     cr_assert(tuple_equal(point(15, 0, 7), result));
+}
+
+Test(rays, ray_transform) {
+    Ray r = ray(point(1, 2, 3), vector(0, 1, 0));
+    Matrix4 m = translation(3, 4, 5);
+    Ray r2 = transform_ray(&r, &m);
+
+    cr_assert(tuple_equal(r2.origin, point(4, 6, 8)));
+    cr_assert(tuple_equal(r2.direction, vector(0, 1, 0)));
+
+    Matrix4 m2 = scaling(2, 3, 4);
+    Ray r3 = transform_ray(&r, &m2);
+
+    cr_assert(tuple_equal(r3.origin, point(2, 6, 12)));
+    cr_assert(tuple_equal(r3.direction, vector(0, 3, 0)));
 }

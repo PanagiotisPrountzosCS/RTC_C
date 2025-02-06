@@ -1,11 +1,12 @@
 #include <criterion/criterion.h>
 
-#include "globaldefs.h"
-#include "matrix.h"
-#include "tuple.h"
+#include "extras/globaldefs.h"
+#include "maths/matrix.h"
+#include "maths/tuple.h"
 
 Test(matrix, create_mat4) {
-    float data[16] = {1, 2, 3, 4, 5.5, 6.5, 7.5, 8.5, 9, 10, 11, 12, 13.5, 14.5, 15.5, 16.5};
+    float data[16] = {1, 2,  3,  4,  5.5,  6.5,  7.5,  8.5,
+                      9, 10, 11, 12, 13.5, 14.5, 15.5, 16.5};
     Matrix4 m = matrix4(data);
 
     cr_assert_float_eq(matrix4_at(&m, 0, 0), 1, RTCC_EPSILON_CMP);
@@ -55,7 +56,8 @@ Test(matrix, mat4_mult) {
     float b_data[16] = {-2, 1, 2, 3, 3, 2, 1, -1, 4, 3, 6, 5, 1, 2, 7, 8};
     Matrix4 b = matrix4(b_data);
 
-    float c_data[16] = {20, 22, 50, 48, 44, 54, 114, 108, 40, 58, 110, 102, 16, 26, 46, 42};
+    float c_data[16] = {20, 22, 50,  48,  44, 54, 114, 108,
+                        40, 58, 110, 102, 16, 26, 46,  42};
     Matrix4 c = matrix4(c_data);
 
     Matrix4 result = matrix4_multiply(&a, &b);
@@ -198,8 +200,9 @@ Test(matrix, mat4_inverse) {
     cr_assert_float_eq(matrix4_cofactor(&a, 3, 2), 105, RTCC_EPSILON_CMP);
     cr_assert_float_eq(matrix4_at(&b, 2, 3), 105.0 / 532.0, RTCC_EPSILON_CMP);
 
-    float b_data[16] = {0.21805,  0.45113,  0.24060,  -0.04511, -0.80827, -1.45677,
-                        -0.44361, 0.52068,  -0.07895, -0.22368, -0.05263, 0.19737,
+    float b_data[16] = {0.21805,  0.45113,  0.24060,  -0.04511,
+                        -0.80827, -1.45677, -0.44361, 0.52068,
+                        -0.07895, -0.22368, -0.05263, 0.19737,
                         -0.52256, -0.81391, -0.30075, 0.30639};
     Matrix4 c = matrix4(b_data);
 
@@ -208,8 +211,9 @@ Test(matrix, mat4_inverse) {
     float d_data[16] = {8, -5, 9, 2, 7, 5, 6, 1, -6, 0, 9, 6, -3, 0, -9, -4};
     Matrix4 d = matrix4(d_data);
 
-    float e_data[16] = {-0.15385, -0.15385, -0.28205, -0.53846, -0.07692, 0.12308,
-                        0.02564,  0.03077,  0.35897,  0.35897,  0.43590,  0.92308,
+    float e_data[16] = {-0.15385, -0.15385, -0.28205, -0.53846,
+                        -0.07692, 0.12308,  0.02564,  0.03077,
+                        0.35897,  0.35897,  0.43590,  0.92308,
                         -0.69231, -0.69231, -0.76923, -1.92308};
     Matrix4 e = matrix4(e_data);
 

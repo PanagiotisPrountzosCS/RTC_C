@@ -1,7 +1,7 @@
-#include <color.h>
 #include <criterion/criterion.h>
 
-#include "globaldefs.h"
+#include "extras/globaldefs.h"
+#include "graphics/color.h"
 
 Test(color, create) {
     Color c = {-0.5, 0.4, 1.7};
@@ -30,7 +30,7 @@ Test(color, subtract) {
 
 Test(color, multiply) {
     Color c1 = {0.2, 0.3, 0.4};
-    Color c2 = color_multiply(c1, 2);
+    Color c2 = color_multiply_scalar(c1, 2);
     cr_assert_float_eq(c2.r, 0.4, RTCC_EPSILON_CMP);
     cr_assert_float_eq(c2.g, 0.6, RTCC_EPSILON_CMP);
     cr_assert_float_eq(c2.b, 0.8, RTCC_EPSILON_CMP);

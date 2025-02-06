@@ -1,10 +1,10 @@
 #include <criterion/criterion.h>
 
-#include "geometries.h"
-#include "intersections.h"
-#include "matrix.h"
-#include "ray.h"
-#include "transformations.h"
+#include "maths/geometries.h"
+#include "maths/matrix.h"
+#include "maths/transformations.h"
+#include "physics/intersections.h"
+#include "physics/ray.h"
 
 Test(intersections, ray) {
     Tuple p = point(2, 3, 4);
@@ -137,48 +137,4 @@ Test(intersections, null_hit) {
     cr_assert_eq(i, NULL);
 
     free(xs.intersections);
-}
-
-Test(rays, ray_transform) {
-    Ray r = ray(point(1, 2, 3), vector(0, 1, 0));
-    Matrix4 m = translation(3, 4, 5);
-    Ray r2 = transform_ray(&r, &m);
-
-    cr_assert(tuple_equal(r2.origin, point(4, 6, 8)));
-    cr_assert(tuple_equal(r2.direction, vector(0, 1, 0)));
-
-    Matrix4 m2 = scaling(2, 3, 4);
-    Ray r3 = transform_ray(&r, &m2);
-
-    cr_assert(tuple_equal(r3.origin, point(2, 6, 12)));
-    cr_assert(tuple_equal(r3.direction, vector(0, 3, 0)));
-}
-
-Test(sphere, default_transformation) {
-    Sphere s = sphere();
-    Matrix4 identity = matrix4_identity();
-    cr_assert(matrix4_equal(&s.transform, &identity));
-}
-
-Test(sphere, sphere_translation) {
-    Sphere s = sphere();
-
-    Matrix4 newTransform = translation(2, 3, 4);
-    sphere_set_transform(&s, &newTransform);
-
-    cr_assert(matrix4_equal(&s.transform, &newTransform));
-}
-
-Test(sphere, transformation_before_intersection) {
-    Sphere s = sphere();
-    Ray r = ray(point(0, 0, -5), vector(0, 0, 1));
-
-    Matrix4 newTransform = scaling(2, 2, 2);
-    sphere_set_transform(&s, &newTransform);
-
-    Intersections xs = intersect_ray_sphere(&r, &s);
-
-    cr_assert_eq(xs.count, 2);
-    cr_assert_float_eq(xs.intersections[0].t, 3, RTCC_EPSILON_CMP);
-    cr_assert_float_eq(xs.intersections[1].t, 7, RTCC_EPSILON_CMP);
 }

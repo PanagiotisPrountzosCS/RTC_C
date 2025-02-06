@@ -8,23 +8,29 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(INCLUDE_DIRS include)
 
 set(SOURCE_FILES
-    src/tuple.c
-    src/canvas.c
-    src/algorithms.c
-    src/matrix.c
-    src/globaldefs.c
-    src/intersections.c
-    src/ray.c
-    src/geometries.c
+    src/extras/algorithms.c
+    src/extras/globaldefs.c
+
+    src/graphics/canvas.c
+
+    src/maths/tuple.c
+    src/maths/matrix.c
+    src/maths/geometries.c
+
+    src/physics/light.c
+    src/physics/ray.c
+    src/physics/intersections.c
 )
 
 set(TEST_SOURCES
-    tests/tupletest.c
-    tests/colortest.c
     tests/canvastest.c
-    tests/matrixtest.c
-    tests/transformationstest.c
+    tests/colortest.c
     tests/intersectionstest.c
+    tests/materialstest.c
+    tests/matrixtest.c
+    tests/spheretest.c
+    tests/transformationstest.c
+    tests/tupletest.c
     tests/lightingtest.c
 )
 

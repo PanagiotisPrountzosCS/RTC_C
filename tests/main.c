@@ -1,12 +1,12 @@
+#include <math.h>
 #include <stdio.h>
 
-#include "algorithms.h"
-#include "canvas.h"
-#include "geometries.h"
-#include "globaldefs.h"
-#include "intersections.h"
-#include "math.h"
-#include "ray.h"
+#include "extras/algorithms.h"
+#include "extras/globaldefs.h"
+#include "graphics/canvas.h"
+#include "maths/geometries.h"
+#include "physics/intersections.h"
+#include "physics/ray.h"
 
 #define WIDTH 2560
 #define HEIGHT 1440
@@ -54,9 +54,7 @@ Tuple calculate_ray_direction(size_t i, size_t j) {
     return direction;
 }
 
-float filter(float x) {
-    return pow(x,0.75);
-}
+float filter(float x) { return pow(x, 0.75); }
 
 void drawCircle() {
     // chapter 5 final example

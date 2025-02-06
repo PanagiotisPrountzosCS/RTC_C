@@ -1,8 +1,8 @@
 #include <criterion/criterion.h>
 #include <math.h>
 
-#include "globaldefs.h"
-#include "tuple.h"
+#include "extras/globaldefs.h"
+#include "maths/tuple.h"
 
 Test(tuple, create) {
     Tuple t = {4.3, -4.2, 3.1, 1.0};
@@ -164,16 +164,16 @@ Test(tuple, tuple_equal) {
     cr_assert(!tuple_equal(a, c));
 }
 
-Test(tuple, tuple_reflect){
-    Tuple v = vector(1,-1,0);
-    Tuple n = vector(0,1,0);
-    Tuple r = tuple_reflect(v,n);
-    Tuple expected = vector(1,1,0);
-    cr_assert(tuple_equal(r,expected));
+Test(tuple, tuple_reflect) {
+    Tuple v = vector(1, -1, 0);
+    Tuple n = vector(0, 1, 0);
+    Tuple r = tuple_reflect(v, n);
+    Tuple expected = vector(1, 1, 0);
+    cr_assert(tuple_equal(r, expected));
 
-    v = vector(0,-1,0);
-    n = vector(0.70711,0.70711,0);
-    r = tuple_reflect(v,n);
-    expected = vector(1,0,0);
-    cr_assert(tuple_equal(r,expected));
+    v = vector(0, -1, 0);
+    n = vector(0.70711, 0.70711, 0);
+    r = tuple_reflect(v, n);
+    expected = vector(1, 0, 0);
+    cr_assert(tuple_equal(r, expected));
 }
